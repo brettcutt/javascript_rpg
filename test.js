@@ -364,6 +364,58 @@ do {
     i++;
 } while (i < 10);
 
+//--------------------------------------------------------------------------- TRY CATCH
+// TRY CATCH, Uses to catch potential errors
+
+try {
+    helloWorld(); // error happens here because helloWorld() is undefined;
+} catch (ourError) {
+    console.log("Error occured and the catch statement was executed");
+    console.log(ourError.name);
+    console.log(ourError.message);
+}
+
+console.log("the execution continues");
+
+//Error occured and the catch statement was executed
+//the execution continues
+
+//--------------------------------------------------------------------------- FINALLY
+// FINALLY, will run after a try or catch statement no matter what.
+var numbers = [1, 2, 3, 4, 5, "banana", null];
+
+var i = 0, total = 0;
+while (i < numbers.length) {
+    try {
+        if ((typeof numbers[i] != "number") || isNaN(numbers[i])) {
+            continue;
+        }
+        total += numbers[i];
+    }
+    finally {
+        console.log("Finally statement executed!");
+        i++;
+        console.log(total);
+    }
+}
+
+//--------------------------------------------------------------------------- THROW
+// THROW,  throw generates a new instance of the error object with the message.
+
+let person = { "age": 30, firstName: "Jane" };
+
+try {
+    if (!person.occupancy) {
+        throw new Error("No such property as occupancy");
+        console.log("hello world"); // unreachable code under throw
+    }
+
+} catch (ourError) {
+    //alert("Error: " + ourError.message);
+    console.log("Error: " + ourError.message);
+    //Error: No such property as occupancy
+}
+
 //--------------------------------------------------------------------------- BREAK
 // 25. BREAK, stops the iteration process
 
@@ -487,9 +539,9 @@ var d = {};
 console.log(d);
 //  { zebra: undefined, horse: undefined }
 
-//---------------------------------------------------------------------------
+//--------------------------------------------------------------------------- OBJECTS 
 
-var country = {
+let country = {
     name: "Croatia",
     population: 4.224,
     sea: true,
@@ -499,6 +551,102 @@ var country = {
         console.log(this.name + " is a country with " + this.population + " people");
     }
 };
-bio();
 
-console.log(d)
+//run the inside functions separate
+country.bio()
+console.log(country)
+console.log('name' in country)
+//-------------------------------------- UPDATE OBJECT VALUES
+
+country.name = 'Australia';
+country.sea = false;
+country.language = "English";
+country.bio()
+console.log(country);
+
+//-------------------------------------- DELETE OBJECT VAULES
+
+delete country.name
+console.log(country.name)
+//undefined
+
+//--------------------------------------------------------------------------- OBJECTS 2
+// OBJECTS 2 Creates an object the same way but with a different method.
+
+let person2 = new Object();
+person2.name = "Brett";
+person2.age = 30;
+console.log(person2.name, person2.age);
+
+//--------------------------------------------------------------------------- CONSTRUCTORS PREFERRED WAY TO MAKE OBJECTS
+// An object named Car with a function constructor. Is actually a function
+function Car(year, owner, manufacturer) {
+    this.year = year;
+    this.owner = owner;
+    this.manufacturer = manufacturer;
+    this.bio = function () {
+        console.log(`This ${this.manufacturer} belongs to ${this.owner}`)
+    };
+}
+
+// Instances of the Car object. Is actually an object
+let myCar = new Car("1965", "Ann", "Ford");
+
+myCar.bio();
+// vrooooooom!
+console.log(myCar.year, myCar.owner);
+// 1965 Ann
+
+console.log(myCar instanceof Car);
+// true
+
+//--------------------------------------------------------------------------- OBJECT WITH CLASS METHOD
+class Person {
+    constructor(name, city) {
+        this.name = name;
+        this.city = city;
+    }
+    sayItOutLoud() {
+        console.log(`My name is ${this.name} and I am from ${this.city}.`)
+    }
+}
+
+let bob = new Person('bob', 'Adelaide')
+
+bob.sayItOutLoud();
+
+bob.age = 30
+console.log(bob)
+
+//--------------------------------------------------------------------------- OBJECTS 3 DOT NOTATION
+
+let tree = {
+    specie: "olive tree",
+    age: 101,
+    location: "Zadar",
+    leaves: {
+        amount: 1000,
+        color: "green"
+    }
+};
+
+// Two methods to get the properties of an inner object
+console.log(tree['leaves'].amount);
+console.log(tree.leaves.color);
+
+
+//--------------------------------------------------------------------------- THIS
+// THIS, refers to the current object.
+var person = {
+    firstName: "Judy",
+    lastName: "Smith",
+    hello: function () {
+        // The 'this' keyword does the same as entering the object name 'person'.
+        console.log(`My name is: ${person.firstName} ${this.lastName}`);
+    }
+};
+
+person.hello();
+
+// My name is: Judy Smith
+

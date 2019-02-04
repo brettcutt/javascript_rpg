@@ -24,7 +24,7 @@ classType = [
 
 let classInformation = []
 classType.forEach(function (item) {
-    classInformation.push(`<a href="#" onclick="">
+    classInformation.push(`<a href="#" onclick="GameManager.setGameStart('${item.name}')">
     <img src="static/img/${item.image}.jpg" alt="${item.image}">
     <div>
     <h3>${item.name}</h3>
@@ -33,5 +33,5 @@ classType.forEach(function (item) {
     </a>`)
 })
 
-var interface = document.getElementById('interface').innerHTML = classInformation;
+var interface = document.querySelector('.interface').innerHTML = classInformation;
 
