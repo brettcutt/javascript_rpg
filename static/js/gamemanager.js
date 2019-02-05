@@ -23,7 +23,7 @@ let GameManager = {
         getInterface.innerHTML = '<img src="static/img/' + playerClass.toLowerCase() + '.jpg" class="avatar">' +
             '<div>' +
             '<h3>' + playerClass + '</h3>' +
-            '<p>Health:' + player.health + '</p>' +
+            '<p class="health-player">Health:' + player.health + '</p>' +
             '<p>Mana:' + player.mana + '</p>' +
             '<p>Strength:' + player.strength + '</p>' +
             '<p>Agility:' + player.agility + '</p>' +
@@ -56,11 +56,11 @@ let GameManager = {
                 break;
         }
         getHeader.innerHTML = '<p>Task: Choose your move!</p>';
-        getActions.innerHTML = '<a href="#" class="btn-prefight" onclick="Playermoves.calcAttack()">Attack!</a>';
+        getActions.innerHTML = '<a href="#" class="btn-prefight" onclick="PlayerMoves.calcAttack()">Attack!</a>';
         getEnemy.innerHTML = '<img src="static/img/' + enemy.enemyType.toLowerCase() + '.jpg" class="avatar">' +
             '<div>' +
             '<h3>' + enemy.enemyType + '</h3>' +
-            '<p>Health:' + enemy.health + '</p>' +
+            '<p class="health-enemy">Health:' + enemy.health + '</p>' +
             '<p>Mana:' + enemy.mana + '</p>' +
             '<p>Strength:' + enemy.strength + '</p>' +
             '<p>Agility:' + enemy.agility + '</p>' +
